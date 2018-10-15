@@ -29,11 +29,13 @@ input{ font: inherit; }
     text-align: center;
     padding: 10px;
 }
-.songList {
-    border-top: 1px solid #333;
+.songList-Container{
     flex-grow: 1;
 }
-.li{
+.songList {
+    border-top: 1px solid #333;
+}
+li{
     border-bottom: 1px solid #999;
     padding: 10px;
     margin: 0 20px;
