@@ -35,13 +35,12 @@ input{ font: inherit; }
 .songList {
     border-top: 1px solid #333;
 }
-li{
+.songList > li{
     border-bottom: 1px solid #999;
     padding: 10px;
-    margin: 0 20px;
 }
 .active {
-    background-color: #d4d4d4;    
+    background: #d4d4d4;    
 }
 .draggable {     
     text-align: center;
