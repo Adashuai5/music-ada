@@ -5,7 +5,6 @@
             this.$el = $(this.el)
         },
         template: `
-        <h1>新建歌曲</h1>
         <form class="form">
             <div class="row">
                 <label>
@@ -35,21 +34,37 @@
                 html = html.replace(`__${string}__`, data[string] || '')
             })
             $(this.el).html(html)
+            if (data.id) {
+                $(this.el).prepend('<h1>编辑歌曲</h1>')
+            } else {
+                $(this.el).prepend('<h1>新建歌曲</h1>')
+            }
         }
     }
     let model = {
-        data: { name: '', singer: '', url: '', id: '' },
+        data: {
+            name: '',
+            singer: '',
+            url: '',
+            id: ''
+        },
         create(data) {
             let Song = AV.Object.extend('Song');
             let song = new Song();
             song.set('name', data.name);
             song.set('singer', data.singer);
             song.set('url', data.url);
-            return song.save().then((newSong) =>{
-                let { id, attributes } = newSong
-                Object.assign(this.data, { id, ...attributes })
+            return song.save().then((newSong) => {
+                let {
+                    id,
+                    attributes
+                } = newSong
+                Object.assign(this.data, {
+                    id,
+                    ...attributes
+                })
                 // this.data = { id, ...attributes }
-            },(error) =>{
+            }, (error) => {
                 console.error('error');
             });
         }
@@ -69,6 +84,15 @@
                 this.model.data = data
                 this.view.render(this.model.data)
             })
+            window.eventHub.on('new', (data) => {
+                this.model.data = {
+                    name: '',
+                    singer: '',
+                    url: '',
+                    id: ''
+                }
+                this.view.render(this.model.data)
+            })
         },
         bindEvents() {
             this.view.$el.on('submit', 'form', (e) => {
@@ -79,11 +103,11 @@
                     data[string] = this.view.$el.find(`[name="${string}"]`).val()
                 })
                 this.model.create(data)
-                    .then(()=>{
-                    this.view.render({})
-                    let string = JSON.stringify(this.model.data)
-                    let object = JSON.parse(string)
-                    window.eventHub.emit('create', object)
+                    .then(() => {
+                        this.view.render({})
+                        let string = JSON.stringify(this.model.data)
+                        let object = JSON.parse(string)
+                        window.eventHub.emit('create', object)
                     })
             })
         }
