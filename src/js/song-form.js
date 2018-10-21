@@ -47,9 +47,7 @@
             song.set('url', data.url);
             return song.save().then((newSong) =>{
                 let { id, attributes } = newSong
-                Object.assign(this.data, {
-                    ...attributes, id
-                })
+                Object.assign(this.data, { id, ...attributes })
                 // this.data = { id, ...attributes }
             },(error) =>{
                 console.error('error');
@@ -64,7 +62,12 @@
             this.model = model
             this.view.render(this.model.data)
             window.eventHub.on('upload', (data) => {
-                this.view.render(data)
+                this.model.data = data
+                this.view.render(this.model.data)
+            })
+            window.eventHub.on('select', (data) => {
+                this.model.data = data
+                this.view.render(this.model.data)
             })
         },
         bindEvents() {
