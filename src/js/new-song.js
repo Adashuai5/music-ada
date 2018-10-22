@@ -9,7 +9,7 @@
         }
     }
     let model = {}
-    let contrallor = {
+    let controller = {
         init(view, model) {
             this.view = view
             this.model = model
@@ -32,5 +32,5 @@
             $(this.view.el).removeClass("active")
         }
     }
-    contrallor.init(view, model)
+    controller.init(view, model)
 }

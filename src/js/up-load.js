@@ -1,9 +1,9 @@
 {
     let view = {
-        el: '.upLoadArea',
+        el: '.uploadArea',
         template: `
-        <div id="upLoadContainer" class="draggable">
-            <div id="upLoadButton" class="clickable">
+        <div id="uploadContainer" class="draggable">
+            <div id="uploadButton" class="clickable">
                 <p>点击或拖拽歌曲文件</p>
                 <p>文件大小不得超过 40MB</p>
             </div>
@@ -17,7 +17,7 @@
         }
     }
     let model = {}
-    let contrallor = {
+    let controller = {
         init(view, model) {
             this.view = view
             this.model = model
@@ -27,13 +27,13 @@
         initQiniu() {
             let uploader = Qiniu.uploader({
                 runtimes: 'html5', //上传模式,依次退化
-                browse_button: this.view.find('#upLoadButton'), //上传选择的点选按钮，**必需**
+                browse_button: this.view.find('#uploadButton'), //上传选择的点选按钮，**必需**
                 uptoken_url: 'http://localhost:8888/uptoken',
                 domain: 'pghjv7363.bkt.clouddn.com', //bucket 域名，下载资源时用到，**必需**
                 get_new_uptoken: false, //设置上传文件的时候是否每次都重新获取新的token
                 max_file_size: '40mb', //最大文件体积限制
                 dragdrop: true, //开启可拖曳上传
-                drop_element: this.view.find('#upLoadContainer'), //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                drop_element: this.view.find('#uploadContainer'), //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
                 auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
                 init: {
                     'FilesAdded': function (up, files) {
@@ -66,5 +66,5 @@
             });
         }
     }
-    contrallor.init(view, model)
+    controller.init(view, model)
 }

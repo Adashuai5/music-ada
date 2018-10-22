@@ -1,54 +1,90 @@
-*{ margin: 0; padding: 0; }
-*{ box-sizing: border-box; }
-*::after{ box-sizing: border-box; }
-*::before{ box-sizing: border-box; }
-ul,li{ list-style: none; }
-a{ color: inherit; text-decoration: none; }
-body{ font-size: 12px; line-height: 1.5; }
-input{ font: inherit; }
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::after {
+    box-sizing: border-box;
+}
+
+*::before {
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+input {
+    font: inherit;
+}
 
 /* layout */
-.page{ 
+.page {
     display: flex;
     height: 100vh;
 }
-.page > aside {
+
+.page>aside {
     width: 200px;
 }
-.page > main {
+
+.page>main {
     flex-grow: 1;
     padding-left: 20px;
 }
 
 /* aside */
-.page > aside {
+.page>aside {
     display: flex;
     flex-direction: column;
 }
+
 .newSong {
     text-align: center;
     padding: 10px;
 }
-.songList-Container{
+
+.songList-Container {
     flex-grow: 1;
 }
+
 .songList {
     border-top: 1px solid #333;
 }
-.songList > li{
+
+.songList>li {
     border-bottom: 1px solid #999;
     padding: 10px;
 }
+
 .active {
-    background: #d4d4d4;    
+    background: #d4d4d4;
 }
-.draggable {     
+
+.draggable {
     text-align: center;
     width: 200px;
     border: 2px dashed #ccc;
-    border-radius: 4px; 
+    border-radius: 4px;
     padding: 30px;
 }
+
 .clickable {
     cursor: pointer;
 }
@@ -57,26 +93,31 @@ input{ font: inherit; }
 .form {
     font-size: 14px;
 }
-.form > .row {
+
+.form>.row {
     margin: 20px 0;
     display: flex;
 }
-.form > .row > label{
+
+.form>.row>label {
     display: flex;
-    width: 4em;    
+    width: 4em;
     justify-content: flex-end;
     margin-right: 5px;
     align-items: center;
 }
-.form > .row.actions {
+
+.form>.row.actions {
     margin-left: calc(4em + 5px);
 }
+
 .form input[type=text] {
     padding: 3px 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
     height: 30px;
 }
+
 .form input[type=button],
 .form input[type=submit],
 .form button {
@@ -86,10 +127,49 @@ input{ font: inherit; }
     border-radius: 5px;
     background: white;
 }
-.page > main {
+
+.page>main {
     padding-top: 20px;
     background: #d4d4d4;
 }
 
+/* loading */
+@keyframes loading {
+    0% {
+        transform: scale(1.0)
+    }
 
-    
+    100% {
+        transform: scale(0.1)
+    }
+}
+
+.site-loading {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.site-loading.active {
+    visibility: visible;
+}
+
+.site-loading::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    background: green;
+    border-radius: 50%;
+    animation: loading 1s alternate-reverse infinite linear;
+}
