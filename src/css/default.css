@@ -28,16 +28,53 @@ a {
 body {
     font-size: 12px;
     line-height: 1.5;
+    background: #F5F5F5;
 }
 
 input {
     font: inherit;
 }
 
+/* header */
+
+header {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    width: 100vw;
+    height: 70px;
+    background: #242424;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+
+.iconWrapper {
+    width: 32px;
+    height: 32px;
+    background: red;
+    border-radius: 50%; 
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    fill: #fff;
+}
+
+.iconName {
+    font-size: 1.4rem;
+    color: #fff;
+    padding-left: 5px;
+}
+
 /* layout */
 .page {
     display: flex;
-    height: 100vh;
+    height: 90vh;
+    margin-left: 14vw;
+    margin-right: 14vw;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .page>aside {
@@ -66,6 +103,7 @@ input {
 
 .songList {
     border-top: 1px solid #333;
+    background: #fff;
 }
 
 .songList>li {
@@ -74,7 +112,8 @@ input {
 }
 
 .active {
-    background: #d4d4d4;
+    background: #000000;
+    color: #fff;
 }
 
 .draggable {
@@ -92,8 +131,11 @@ input {
 /* main */
 .form {
     font-size: 14px;
+    color: #fff;
 }
-
+h1 {
+    color: #FFF;
+}
 .form>.row {
     margin: 20px 0;
     display: flex;
@@ -130,7 +172,7 @@ input {
 
 .page>main {
     padding-top: 20px;
-    background: #d4d4d4;
+    background: #000000;
 }
 
 /* loading */
