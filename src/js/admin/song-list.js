@@ -57,7 +57,7 @@
             this.model = model
             this.view.render(this.model.data)
             this.bindEventHub()
-            this.bindEvents()
+            this.bindEventHub()
             this.getALLSongs()
         },
         bindEventHub() {
@@ -78,7 +78,7 @@
                 this.view.render(this.model.data)
             })
         },
-        bindEvents() {
+        bindEventHub() {
             $(this.view.el).on('click', 'li', (e) => {
                 let songId = e.currentTarget.getAttribute('data-song-id')
                 this.model.data.selectedSongId = songId

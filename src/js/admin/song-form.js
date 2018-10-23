@@ -83,7 +83,7 @@
         init(view, model) {
             this.view = view
             this.view.init()
-            this.bindEvents()
+            this.bindEventHub()
             this.model = model
             this.view.render(this.model.data)
             window.eventHub.on('select', (data) => {
@@ -129,7 +129,7 @@
                     window.eventHub.emit('update', JSON.parse(JSON.stringify(this.model.data)))
                 })
         },
-        bindEvents() {
+        bindEventHub() {
             this.view.$el.on('submit', 'form', (e) => {
                 e.preventDefault()
                 if (this.model.data.id) {
