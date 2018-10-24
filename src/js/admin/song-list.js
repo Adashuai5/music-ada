@@ -24,11 +24,6 @@
                 $el.find('ul').append(domLi)
             })
         },
-        activeItem(li) {
-            let $li = $(li)
-            $li.addClass('active')
-                .siblings('.active').removeClass('active')
-        },
         clearActive() {
             $(this.el).find('.active').removeClass('active')
         }
@@ -57,7 +52,7 @@
             this.model = model
             this.view.render(this.model.data)
             this.bindEventHub()
-            this.bindEventHub()
+            this.bindEvents()
             this.getALLSongs()
         },
         bindEventHub() {
@@ -78,7 +73,7 @@
                 this.view.render(this.model.data)
             })
         },
-        bindEventHub() {
+        bindEvents() {
             $(this.view.el).on('click', 'li', (e) => {
                 let songId = e.currentTarget.getAttribute('data-song-id')
                 this.model.data.selectedSongId = songId
