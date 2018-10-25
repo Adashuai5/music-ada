@@ -63,7 +63,7 @@
                         this.model.data.status = 'open'
                         var domain = up.getOption('domain');
                         var response = JSON.parse(info.response);
-                        var sourceLink = 'https://' + domain + '/' + encodeURIComponent(response.key);
+                        var sourceLink = 'http://' + domain + '/' + encodeURIComponent(response.key);
                         window.eventHub.emit('new', {
                             url: sourceLink,
                             name: response.key
