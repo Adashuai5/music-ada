@@ -20,7 +20,7 @@ body{font:14px/1.5 Helvetica,sans-serif;}
 /* grey: #888 */
 body {
     font-size: 15px;
-    background: white;
+    background: #FCFCFD;
 }
 
 .sectionTitle {
@@ -79,7 +79,7 @@ section.topbar>a::after {
 /* tabs-nav */
 .tabs-nav {
     display: flex;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid rgb(241, 241, 241);
 }
 
 .tabs-nav>li {
@@ -135,7 +135,9 @@ section.topbar>a::after {
     display: table;
 }
 
-section.playlists {}
+section.playlists {
+    padding-bottom: 10px;
+}
 
 section.playlists>ol.songs {
     display: flex;
@@ -183,7 +185,7 @@ section.songs>.list>li {
     margin-left: 10px;
     padding-bottom: 6px;
     padding-top: 5px;
-    border-bottom: 1px solid #E2E2E3;
+    border-bottom: 1px solid rgb(251, 251, 251);
 }
 
 section.songs>.list .playButton {
