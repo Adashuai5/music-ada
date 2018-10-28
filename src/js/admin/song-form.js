@@ -73,10 +73,8 @@
                     id,
                     attributes
                 } = newSong
-                Object.assign(this.data, {
-                    id,
-                    ...attributes
-                })
+                this.data.id = id
+                Object.assign(this.data, attributes)
                 // this.data = { id, ...attributes }
             }, (error) => {
                 console.error('error')
