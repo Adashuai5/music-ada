@@ -67,7 +67,7 @@
             let linesHeight = this.$el.find('.lines')[0].getBoundingClientRect().top
             let height = pHeight - linesHeight
             this.$el.find('.lines').css({
-                transform: `translateY(${-(height-25)}px)`
+                transform: `translateY(${-(height - 25)}px)`
             })
             $(p).addClass('active').siblings('.active').removeClass('active')
         },
@@ -86,7 +86,7 @@
                 singer: '',
                 url: ''
             },
-            status: 'paused'
+            status: 'playing'
         },
         get(id) {
             var query = new AV.Query('Song');
@@ -106,7 +106,10 @@
             this.model.get(id).then(() => {
                 this.view.render(this.model.data)
             })
+            this.bindEventHub()
             this.bindEvents()
+        },
+        bindEventHub() {
             window.eventHub.on('songEnd', () => {
                 this.model.data.status = 'paused'
                 this.view.render(this.model.data)
