@@ -68,7 +68,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 4;
     background: white;
 }
 
@@ -112,6 +112,7 @@ section.topbar>a::after {
 .tabs-nav {
     display: flex;
     border-bottom: 1px solid rgb(238, 238, 238);
+    z-index: 4;
 }
 
 .tabs-nav>li {
@@ -126,7 +127,7 @@ section.topbar>a::after {
 .tabs-nav>li>.text {
     padding: 10px 5px;
     position: relative;
-    top: 1px;
+    top: 1.5px;
 }
 
 .tabs-nav>li.active {
@@ -193,11 +194,90 @@ section.playlists>ol.songs>li p {
     padding: 0 6px;
 }
 
-section.playlists>ol.songs>li img {
-    width: 100%;
+section.playlists>ol.songs>li .cover {
+    position: relative;
 }
 
-section.songs {}
+section.playlists>ol.songs>li img {
+    width: 100%;
+    z-index: 1;
+}
+
+section.playlists>ol.songs>li span {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    padding-left: 13px;
+    color: #fff;
+    font-size: 12px;
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: 11px 10px;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, .15);
+    z-index: 3;
+}
+
+section.playlists>ol.songs>li .cover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 20px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, .2), transparent);
+    z-index: 2;
+}
+
+section.songs>.hotTop {
+    padding-top: 38.9%;
+    overflow: hidden;
+    background: url(//s3.music.126.net/m/s/img/hot_music_bg_2x.jpg?f01a252…) no-repeat;
+    background-size: contain;
+    position: relative;
+}
+
+section.songs>.hotTop::after {
+    content: '';
+    z-index: 1;
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+section.songs .hotTop-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    padding-left: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+section.songs .i-hotTop {
+    background: url(//s3.music.126.net/m/s/img/index_icon_3x.png?49a82fe…) no-repeat;
+    background-size: 166px 97px;
+}
+
+section.songs .hotIcon {
+    width: 142px;
+    height: 67px;
+    background-position: -24px -30px;
+}
+
+section.songs .hotTime {
+    margin-top: 10px;
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 12px;
+    transform: scale(.91);
+    transform-origin: left top;
+}
 
 section.songs>.list {
     margin-top: 18px;
@@ -267,4 +347,42 @@ section.art .copyright {
     font-size: 12px;
     color: #888;
     transform: scale(.75);
+}
+
+.page-3>.form {
+    padding: 15px 10px;
+    border-bottom: 1px solid rgb(245, 245, 245);
+}
+
+.page-3 .input-cover {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    padding: 0 30px;
+    box-sizing: border-box;
+    background: #ebecec;
+    border-radius: 30px;
+}
+
+.page-3>.form label {
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    font-size: 14px;
+    color: #c9c9c9;
+    background: transparent;
+    pointer-events: none;
+}
+
+.page-3>.form .input {
+    width: 100%;
+    height: 30px;
+    line-height: 18px;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 0;
 }
