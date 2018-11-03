@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>歌单管理页面</title>
+    <link rel="stylesheet" href="./css/default.css">
+    <script src="//at.alicdn.com/t/font_886433_jzbmp87x1js.js"></script>
+</head>
+<style>
+    .row{
+        color: #fff;
+    }
+</style>
+
+<body>
+    <header>
+        <div class="iconWrapper">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-music"></use>
+            </svg>
+        </div>
+        <span class="iconName">网易云音乐</span>
+    </header>
+    <div class="page">
+        <aside>
+            <div class="newPlaylist"></div>
+            <div class="PlaylistList-Container">
+            </div>
+            <div class="uploadArea">
+            </div>
+        </aside>
+        <main>
+            <div class="playlistForm-wrapper">
+                <h1>创建歌单</h1>
+                <form class="playlistForm">
+                    <div class="row">
+                        <label>歌单名
+                            <input type="text" name="name">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>简介
+                            <textarea name="summary"></textarea>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <button type="submit">创建</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="../vendors/av-min.js"></script>
+    <script src="./js/initializers/av.js"></script>
+    <script src="../vendors/jquery.min.js"></script>
+    <script src="./js/admin/event-hub.js"></script>
+
+    <script>
+        {
+            let view = {
+                el: '.playlistForm-wrapper',
+                init() {
+                    this.$el = $(this.el)
+                    this.$form = this.$el.find('form')
+                }
+            }
+            let model = {
+                create(data) {
+                    let Playlist = AV.Object.extend('Playlist')
+                    let playlist = new Playlist()
+                    for(let i in data){
+                        console.log(data[i])
+                        playlist.set(`${i}`, data[i])
+                    }
+                    playlist.save().then((newPlaylist) => {
+                        console.log(newPlaylist)
+                    }, (error) => {
+                        console.error('error')
+                    })
+                }
+            }
+            let controller = {
+                init(view, model) {
+                    this.view = view
+                    this.view.init()
+                    this.model = model
+                    this.bindEvents()
+                },
+                bindEvents() {
+                    this.view.$el.on('submit', 'form', (e) => {
+                        e.preventDefault()
+                        let form = this.view.$form.get(0)
+                        let keys = ['name', 'summary']
+                        let data = {}
+                        keys.reduce((prev, item) => {
+                            prev[item] = form[item].value
+                            return prev
+                        }, data)
+                        this.model.create(data)
+                    })
+                }
+            }
+            controller.init(view, model)
+        }
+    </script>
+</body>
+
+</html>
